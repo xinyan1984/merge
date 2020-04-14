@@ -1,12 +1,10 @@
 package com.demos;
 
 public class StackDemo {
-  private volatile int length;
   private Object[] array;
   private volatile int topIndex = -1;
 
   public StackDemo(int length) {
-    this.length = length;
     array = new Object[length];
   }
 
