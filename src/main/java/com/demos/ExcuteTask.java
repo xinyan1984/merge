@@ -10,11 +10,8 @@ public class ExcuteTask {
   List<PointThread> listArray = new ArrayList<PointThread>();
   HashMap<String, PointThread> hashMap = new HashMap<String, PointThread>();
 
-  //二维数组存放节点
-
-
   public void initData() {
-    Stack<PointThread> stackInit = new Stack<PointThread>();
+    HashMap<Integer, PointThread> hashMap = new HashMap<Integer, PointThread>();
 
     PointThread A = new PointThread("A");
     PointThread B = new PointThread("B");
@@ -25,13 +22,12 @@ public class ExcuteTask {
     PointThread G = new PointThread("G");
 
     listArray.add(A);
-    stackInit.push(G);
-    stackInit.push(C);
-    A.previous = stackInit;
+    hashMap.put(1, D);
+    A.next = hashMap;
 
-    stackInit.removeAllElements();
+    hashMap.clear();
+    hashMap.put(1, D);
 
-    listArray.add(B);
     listArray.add(C);
     listArray.add(D);
     listArray.add(E);
@@ -54,29 +50,18 @@ public class ExcuteTask {
       PointThread tmp = stack.pop();
       if (tmp.previous == null) {
         tmp.run();
-        PointThread tmpNext = tmp.next.peek();
+        PointThread tmpNext = tmp.next.get(0);
         tmpNext.previous = null;
         tmp = null;
-        if(tmpNext.next.size()==1) {
+        if (tmpNext.next.size() == 1) {
           stacknew.push(tmp);
-        }
-        else{
-
+        } else if (tmpNext.next.size() > 1) {
+          for (int i = 0; i < tmpNext.next.size(); i++)
+            stacknew.push(tmpNext.next.get(i));
         }
       }
-      stack = stacknew;
+      if (stack.isEmpty()) stack = stacknew;
     } while (!stack.isEmpty());
-
-
   }
-
-
-  //取二维数组中节点来执行，通过控制流程
-  // t1.start();
-  //        t1.join();
-  //        t2.start();
-  //        t2.join();
-  //        t3.start();
-
 
 }

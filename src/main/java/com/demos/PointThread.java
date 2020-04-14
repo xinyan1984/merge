@@ -1,28 +1,30 @@
 package com.demos;
 
-import java.util.Stack;
+import java.util.HashMap;
 
 public class PointThread {
 
-  public Stack<PointThread> getNext() {
+
+  public HashMap<Integer, PointThread> getNext() {
     return next;
   }
 
-  public void setNext(Stack<PointThread> next) {
+  public void setNext(HashMap<Integer, PointThread> next) {
     this.next = next;
   }
 
-  public Stack<PointThread> getPrevious() {
+  public HashMap<Integer, PointThread> getPrevious() {
     return previous;
   }
 
-  public void setPrevious(Stack<PointThread> previous) {
+  public void setPrevious(HashMap<Integer, PointThread> previous) {
     this.previous = previous;
   }
 
-  public Stack<PointThread> next;
-  public Stack<PointThread> previous;
+  public HashMap<Integer, PointThread> next;
+  public HashMap<Integer, PointThread> previous;
   private String threadName = "";
+  private int weight = 1;
 
 
   public PointThread(String threadName) {
